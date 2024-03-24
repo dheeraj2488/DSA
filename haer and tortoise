@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        int slow=nums[0];
+        int fast=nums[0];
+        // every number will be valid index as givem in in the question
+        do{
+            slow=nums[slow];
+            fast=nums[nums[fast]];
+        } while(fast!=slow); // here we are detecting the cycle , is there exists a cycle if  yes then we reach at same number after iteration 
+        // note : do it with diagram then it will be more clear
+
+        // when we have known the starting point then to find the number we put slow in starting and start iterating both equally 
+        slow=nums[0];
+        while(fast!=slow){
+            fast=nums[fast];
+            slow=nums[slow];
+        }
+        return slow;
+
+
+    }
+};
