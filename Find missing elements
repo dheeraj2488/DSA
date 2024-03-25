@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> ans;
+
+        for(int i=0;i<nums.size();i++){
+            int el=abs(nums[i]);
+            int ind=el-1; // using element as an index+
+            if(nums[ind]>0) nums[ind]=-(nums[ind]);
+        }
+        for(int i=0;i<nums.size();i++){
+            // the indexes which will be left positive that means the indexes are not used so the index are the numbers which are missin in the array
+            if(nums[i]>0){
+                ans.push_back(i+1);
+            }
+        }
+        return ans;
+    }
+};
