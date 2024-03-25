@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int firstMissingPositive(vector<int>& nums) {
+        int n=nums.size(); 
+        // observation was: in n size of array smallest positive intger wouuld be 1 to n only so we check every element by using them as an index 
+        for (int i = 0; i < n; i++) if (nums[i] <= 0) nums[i] = n + 1;
+        for(int i=0;i<n;i++){
+            int el=abs(nums[i]);
+            int ind=el-1; // using element as an index
+            if(el<=n && nums[ind]>0) nums[ind]= -nums[ind];
+        }
+        for(int i=0;i<n;i++){
+            if(nums[i]>0) return i+1;
+        }
+        return n+1;
+    }
+};
