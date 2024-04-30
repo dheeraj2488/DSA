@@ -1,0 +1,26 @@
+// leetcode 1915
+class Solution {
+public:
+    long long wonderfulSubstrings(string word) {
+        long cnt=0;
+        unordered_map<long,long> mp;
+        mp[0]=1;
+        int xr=0;
+        for(int i=0;i<word.length();i++){
+            int ch=word[i]-'a';
+            xr^=1<<ch;
+            if(mp.find(xr)!=mp.end()){
+                cnt+=mp[xr];
+            }
+            mp[xr]++;
+// checking wether the pref till index i is odd valid 
+            for(int i=0;i<10;i++){
+                long res=xr^(1<<i);
+                if(mp.find(res)!=mp.end()){
+                    cnt+=mp[res];
+                }
+            }
+        }
+        return cnt;
+    }
+};
